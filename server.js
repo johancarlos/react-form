@@ -17,20 +17,6 @@ app.get("/hello", function(req,res){
    res.send('Hello, ' );
 })
 
-/*
-sync function NewForm(req, res) {
-    const cursor = await collection.find()
-                                   .project({ name: 1 })
-                                   .sort({ name: 1 });
-    const array = await cursor.toArray()
-    const names = array.map( o => o.name );
-    res.render("newName", { names} );
-}
-*/
-
-//app.get("/form", App);
-
-
 async function contactList(req, res) {
     const cursor = await clientCollection.find()
                                 .project({ _id:0,client: 1,estado:1 ,quantity:1})
@@ -48,12 +34,8 @@ app.get("/form", function(req,res){
 
 app.get("/", contactList);
 
-/*
-app.listen("3000", function(){
-   console.log( "Ready on Port 3000");
-});
 
-*/
+
 async function startServer() {
     const user = await MongoClient.connect(MONGO_URL, { useNewUrlParser: true });
     db = users.db(DATABASE_NAME);
